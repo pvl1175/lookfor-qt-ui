@@ -3,7 +3,7 @@
 #include <QDebug>
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
-#include <QHeaderView>
+#include <QHeaderView> 
 
 #include <thrift/stdcxx.h>
 #include <thrift/transport/TSocket.h>
