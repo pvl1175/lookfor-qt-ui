@@ -24,12 +24,18 @@
        <layout class="QGridLayout" name="gridLayout">
         <item row="0" column="0">
          <widget class="QSplitter" name="splitter">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
           <widget class="QTreeWidget" name="treeWidget">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -42,7 +48,7 @@
            </property>
            <property name="maximumSize">
             <size>
-             <width>240</width>
+             <width>16777215</width>
              <height>16777215</height>
             </size>
            </property>
@@ -54,7 +60,7 @@
            </property>
            <property name="baseSize">
             <size>
-             <width>240</width>
+             <width>0</width>
              <height>0</height>
             </size>
            </property>
@@ -64,7 +70,7 @@
             </property>
            </column>
           </widget>
-          <widget class="QWidget" name="">
+          <widget class="QWidget" name="layoutWidget">
            <layout class="QVBoxLayout" name="verticalLayout_3">
             <property name="sizeConstraint">
              <enum>QLayout::SetDefaultConstraint</enum>
@@ -146,6 +152,64 @@
               </attribute>
               <column>
                <property name="text">
+                <string>Id</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Title</string>
+               </property>
+               <property name="font">
+                <font>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Price</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>AvitoTime</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Address</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>OwnerName</string>
+               </property>
+               <property name="font">
+                <font>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>OwnerPhone</string>
+               </property>
+               <property name="font">
+                <font>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>UserType</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
                 <string>Location</string>
                </property>
                <property name="font">
@@ -156,67 +220,12 @@
               </column>
               <column>
                <property name="text">
-                <string>Address</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
                 <string>Lat</string>
                </property>
               </column>
               <column>
                <property name="text">
                 <string>Lng</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>Title</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>Price</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>UriMWeb</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>UserType</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>AvitoTime</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>OwnerName</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>OwnerPhone</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>AdState</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>IsParse</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>IsSource</string>
                </property>
               </column>
              </widget>
