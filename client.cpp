@@ -83,11 +83,11 @@ void Client::TreeChildren(std::vector<lookfor9::api::TreeInfo>& list, int index)
     }
 }
 
-void Client::AdsByTree(std::vector<lookfor9::api::Ad> &list, int index)
+void Client::AdsByTree(std::vector<lookfor9::api::Ad> &list, int index, short rowsCount)
 {
     try
     {
-        api->AdsByTree(list, index);
+        api->AdsByTree(list, index, rowsCount);
     }
     catch (...)
     {

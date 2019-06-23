@@ -210,6 +210,11 @@
               </column>
               <column>
                <property name="text">
+                <string>PhoneInfo</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
                 <string>Location</string>
                </property>
                <property name="font">

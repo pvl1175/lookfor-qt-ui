@@ -30,7 +30,7 @@ public:
     QString Hello();
     QString PhoneInfo(const QString& phone);
     void TreeChildren(std::vector<lookfor9::api::TreeInfo>& list, int index);
-    void AdsByTree(std::vector<lookfor9::api::Ad>& list, int index);
+    void AdsByTree(std::vector<lookfor9::api::Ad>& list, int index, short rowsCount);
 };
 
 #endif // CLIENT_H

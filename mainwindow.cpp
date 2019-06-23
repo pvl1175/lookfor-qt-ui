@@ -113,7 +113,7 @@ void MainWindow::on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int colu
 
     Client c;
     std::vector<Ad> ad_list;
-    c.AdsByTree(ad_list, item->data(0, Qt::UserRole).toInt());
+    c.AdsByTree(ad_list, item->data(0, Qt::UserRole).toInt(), -1);
 
     //ui->tableWidget->clear();
 
@@ -129,9 +129,10 @@ void MainWindow::on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int colu
         ui->tableWidget->setItem(i, 5, new QTableWidgetItem(QString::fromStdString(ad_list[i].OwnerName)));
         ui->tableWidget->setItem(i, 6, new QTableWidgetItem(QString::fromStdString(ad_list[i].OwnerPhone)));
         ui->tableWidget->setItem(i, 7, new QTableWidgetItem(QString::fromStdString(ad_list[i].UserType)));
-        ui->tableWidget->setItem(i, 8, new QTableWidgetItem(QString::fromStdString(ad_list[i].Location)));
-        ui->tableWidget->setItem(i, 9, new QTableWidgetItem(QString::fromStdString(ad_list[i].Lat)));
-        ui->tableWidget->setItem(i, 10, new QTableWidgetItem(QString::fromStdString(ad_list[i].Lng)));
+        ui->tableWidget->setItem(i, 8, new QTableWidgetItem(QString::fromStdString(ad_list[i].PhoneInfo)));
+        ui->tableWidget->setItem(i, 9, new QTableWidgetItem(QString::fromStdString(ad_list[i].Location)));
+        ui->tableWidget->setItem(i, 10, new QTableWidgetItem(QString::fromStdString(ad_list[i].Lat)));
+        ui->tableWidget->setItem(i, 11, new QTableWidgetItem(QString::fromStdString(ad_list[i].Lng)));
     }
 
     ui->tableWidget->resizeColumnsToContents();
