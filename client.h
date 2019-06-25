@@ -24,7 +24,7 @@ private:
     void Close();
 
 public:
-    Client(const std::string& address = "127.0.0.1", int port = 9090);
+    Client(const std::string& address = "92.255.199.79", int port = 9090);
     ~Client();
 
     QString Hello();
