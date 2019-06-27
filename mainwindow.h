@@ -6,6 +6,8 @@
 #include <QTableWidgetItem>
 #include <QTableWidgetItem>
 
+#include "api/Api.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -16,19 +18,21 @@ class MainWindow : public QMainWindow
 
 private:
     void FillTree();
+    void UpdateTable(const std::vector<lookfor9::api::Ad>& ad_list);
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
-    void on_testPshButton_clicked();
 
     void on_treeWidget_itemExpanded(QTreeWidgetItem *item);
 
     void on_tableWidget_itemDoubleClicked(QTableWidgetItem *item);
 
     void on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column);
+
+    void on_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;

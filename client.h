@@ -24,13 +24,14 @@ private:
     void Close();
 
 public:
-    Client(const std::string& address = "92.255.199.79", int port = 9090);
+    Client(const std::string& address = "127.0.0.1", int port = 9090);
     ~Client();
 
     QString Hello();
     QString PhoneInfo(const QString& phone);
     void TreeChildren(std::vector<lookfor9::api::TreeInfo>& list, int index);
     void AdsByTree(std::vector<lookfor9::api::Ad>& list, int index, short rowsCount);
+    void AdsByQuery(std::vector<lookfor9::api::Ad>& list, const std::string value, short rowsCount);
 };
 
 #endif // CLIENT_H

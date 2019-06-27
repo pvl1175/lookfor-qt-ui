@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Demo</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout_2">
@@ -19,7 +19,7 @@
      <widget class="QTabWidget" name="tabWidget">
       <widget class="QWidget" name="tab">
        <attribute name="title">
-        <string>Tab 1</string>
+        <string>Недвижимость</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout">
         <item row="0" column="0">
@@ -76,52 +76,30 @@
              <enum>QLayout::SetDefaultConstraint</enum>
             </property>
             <item>
-             <layout class="QVBoxLayout" name="verticalLayout_2">
+             <widget class="QLabel" name="label">
+              <property name="text">
+               <string>Запрос (по части адреса или по части номера телефона)</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout">
               <item>
-               <layout class="QHBoxLayout" name="horizontalLayout">
-                <item>
-                 <widget class="QPushButton" name="testPshButton">
-                  <property name="text">
-                   <string>Test</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLineEdit" name="lineEdit">
-                  <property name="text">
-                   <string>9196315221</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
+               <widget class="QPushButton" name="pushButton">
+                <property name="text">
+                 <string>Выполнить</string>
+                </property>
+               </widget>
               </item>
               <item>
-               <layout class="QVBoxLayout" name="verticalLayout">
-                <item>
-                 <widget class="QLabel" name="label1">
-                  <property name="text">
-                   <string>TextLabel</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label2">
-                  <property name="text">
-                   <string>TextLabel</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
+               <widget class="QLineEdit" name="lineEdit"/>
               </item>
              </layout>
             </item>
             <item>
              <widget class="QTableWidget" name="tableWidget">
-              <property name="contextMenuPolicy">
-               <enum>Qt::ActionsContextMenu</enum>
-              </property>
               <property name="autoFillBackground">
-               <bool>false</bool>
+               <bool>true</bool>
               </property>
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
@@ -144,6 +122,12 @@
               <property name="selectionBehavior">
                <enum>QAbstractItemView::SelectRows</enum>
               </property>
+              <property name="verticalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
+              </property>
+              <property name="horizontalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
+              </property>
               <property name="sortingEnabled">
                <bool>true</bool>
               </property>
@@ -152,12 +136,12 @@
               </attribute>
               <column>
                <property name="text">
-                <string>Id</string>
+                <string>Ид.</string>
                </property>
               </column>
               <column>
                <property name="text">
-                <string>Title</string>
+                <string>Заголовок</string>
                </property>
                <property name="font">
                 <font>
@@ -168,22 +152,22 @@
               </column>
               <column>
                <property name="text">
-                <string>Price</string>
+                <string>Цена</string>
                </property>
               </column>
               <column>
                <property name="text">
-                <string>AvitoTime</string>
+                <string>Дата разм.</string>
                </property>
               </column>
               <column>
                <property name="text">
-                <string>Address</string>
+                <string>Адрес</string>
                </property>
               </column>
               <column>
                <property name="text">
-                <string>OwnerName</string>
+                <string>Владелец</string>
                </property>
                <property name="font">
                 <font>
@@ -194,7 +178,7 @@
               </column>
               <column>
                <property name="text">
-                <string>OwnerPhone</string>
+                <string>Контакт</string>
                </property>
                <property name="font">
                 <font>
@@ -205,17 +189,17 @@
               </column>
               <column>
                <property name="text">
-                <string>UserType</string>
+                <string>Тип</string>
                </property>
               </column>
               <column>
                <property name="text">
-                <string>PhoneInfo</string>
+                <string>Тел. (инфо)</string>
                </property>
               </column>
               <column>
                <property name="text">
-                <string>Location</string>
+                <string>Место</string>
                </property>
                <property name="font">
                 <font>
@@ -225,12 +209,12 @@
               </column>
               <column>
                <property name="text">
-                <string>Lat</string>
+                <string>Широта</string>
                </property>
               </column>
               <column>
                <property name="text">
-                <string>Lng</string>
+                <string>Долгота</string>
                </property>
               </column>
              </widget>
@@ -240,23 +224,6 @@
          </widget>
         </item>
        </layout>
-      </widget>
-      <widget class="QWidget" name="tab_2">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>0</height>
-        </size>
-       </property>
-       <attribute name="title">
-        <string>Tab 2</string>
-       </attribute>
       </widget>
      </widget>
     </item>

@@ -4,6 +4,7 @@
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
 #include <QHeaderView> 
+#include <QDateTime>
 
 #include <thrift/stdcxx.h>
 #include <thrift/transport/TSocket.h>
@@ -32,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->splitter->setStretchFactor(0, 0);
     ui->splitter->setStretchFactor(1, 1);
 
-	ui->treeWidget->setHeaderLabel("Estate");
+    ui->treeWidget->setHeaderLabel("Недв.");
 	ui->treeWidget->setColumnCount(1);
 
     FillTree();
@@ -67,19 +68,6 @@ void MainWindow::FillTree()
     ui->treeWidget->insertTopLevelItems(0, items);
 }
 
-void MainWindow::on_testPshButton_clicked() 
-{
-    Client c;
-    QString h = c.Hello();
-    qDebug() << h;
-
-    QString phi = c.PhoneInfo(ui->lineEdit->text());
-    qDebug() << phi;
-
-    ui->label1->setText(h);
-    ui->label2->setText(phi);
-}
-
 void MainWindow::on_treeWidget_itemExpanded(QTreeWidgetItem *item)
 {
     Client c;
@@ -106,16 +94,10 @@ void MainWindow::on_tableWidget_itemDoubleClicked(QTableWidgetItem *item)
 {
 }
 
-void MainWindow::on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column)
+void MainWindow::UpdateTable(const std::vector<Ad>& ad_list)
 {
-    if(item->childCount() == 1)
-        return;
-
-    Client c;
-    std::vector<Ad> ad_list;
-    c.AdsByTree(ad_list, item->data(0, Qt::UserRole).toInt(), -1);
-
-    //ui->tableWidget->clear();
+    ui->tableWidget->setSortingEnabled(false);
+    ui->tableWidget->clearContents();
 
     ui->tableWidget->setRowCount(ad_list.size());
 
@@ -124,7 +106,14 @@ void MainWindow::on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int colu
         ui->tableWidget->setItem(i, 0, new QTableWidgetItem(QString::number(ad_list[i].Id)));
         ui->tableWidget->setItem(i, 1, new QTableWidgetItem(QString::fromStdString(ad_list[i].Title)));
         ui->tableWidget->setItem(i, 2, new QTableWidgetItem(QString::fromStdString(ad_list[i].Price)));
-        ui->tableWidget->setItem(i, 3, new QTableWidgetItem(QString::fromStdString(ad_list[i].AvitoTime)));
+
+        auto dt = QDate::fromString(QString::fromStdString(ad_list[i].AvitoTime), "dd.MM.yyyy");
+//        auto dt = QDateTime::fromString(QString::fromStdString(ad_list[i].AvitoTime));
+        auto c = new QTableWidgetItem();
+        c->setData(Qt::DisplayRole, dt);
+        ui->tableWidget->setItem(i, 3, c);
+
+
         ui->tableWidget->setItem(i, 4, new QTableWidgetItem(QString::fromStdString(ad_list[i].Address)));
         ui->tableWidget->setItem(i, 5, new QTableWidgetItem(QString::fromStdString(ad_list[i].OwnerName)));
         ui->tableWidget->setItem(i, 6, new QTableWidgetItem(QString::fromStdString(ad_list[i].OwnerPhone)));
@@ -135,5 +124,29 @@ void MainWindow::on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int colu
         ui->tableWidget->setItem(i, 11, new QTableWidgetItem(QString::fromStdString(ad_list[i].Lng)));
     }
 
+    ui->tableWidget->setSortingEnabled(true);
     ui->tableWidget->resizeColumnsToContents();
+}
+
+void MainWindow::on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int column)
+{
+    if(item->childCount() == 1)
+        return;
+
+    Client c;
+    std::vector<Ad> ad_list;
+    c.AdsByTree(ad_list, item->data(0, Qt::UserRole).toInt(), -1);
+    UpdateTable(ad_list);
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    auto query = ui->lineEdit->text();
+    if(query.size() == 0)
+        return;
+
+    Client c;
+    std::vector<Ad> ad_list;
+    c.AdsByQuery(ad_list, ui->lineEdit->text().toStdString(), -1);
+    UpdateTable(ad_list);
 }

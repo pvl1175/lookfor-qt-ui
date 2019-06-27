@@ -95,4 +95,16 @@ void Client::AdsByTree(std::vector<lookfor9::api::Ad> &list, int index, short ro
     }
 }
 
+void Client::AdsByQuery(std::vector<lookfor9::api::Ad> &list, std::string value, short rowsCount)
+{
+    try
+    {
+        api->AdsByQuery(list, value, rowsCount);
+    }
+    catch (...)
+    {
+        qDebug() << "thrift error: failed to call AdsByTree";
+    }
+}
+
 
