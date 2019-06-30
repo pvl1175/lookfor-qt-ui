@@ -36,13 +36,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->treeWidget->setHeaderLabel("Недв.");
 	ui->treeWidget->setColumnCount(1);
 
-    FillTree();
-
     ui->tableWidget->insertRow(1);
 
     QHeaderView *verticalHeader = ui->tableWidget->verticalHeader();
     verticalHeader->setSectionResizeMode(QHeaderView::Fixed);
     verticalHeader->setDefaultSectionSize(18);
+
+    ui->lineEditIp->setText("127.0.0.1");
 }
 
 MainWindow::~MainWindow()
@@ -52,7 +52,14 @@ MainWindow::~MainWindow()
 
 void MainWindow::FillTree()
 {
-    Client c;
+    auto ip = ui->lineEditIp->text();
+
+    if(ip.size() == 0)
+        return;
+
+    ui->treeWidget->clear();
+
+    Client c{ip.toStdString()};
     std::vector<TreeInfo> ti_list;
     c.TreeChildren(ti_list, 0);
 
@@ -70,7 +77,12 @@ void MainWindow::FillTree()
 
 void MainWindow::on_treeWidget_itemExpanded(QTreeWidgetItem *item)
 {
-    Client c;
+    auto ip = ui->lineEditIp->text();
+
+    if(ip.size() == 0)
+        return;
+
+    Client c{ip.toStdString()};
     std::vector<TreeInfo> ti_list;
     c.TreeChildren(ti_list, item->data(0, Qt::UserRole).toInt());
 
@@ -108,11 +120,9 @@ void MainWindow::UpdateTable(const std::vector<Ad>& ad_list)
         ui->tableWidget->setItem(i, 2, new QTableWidgetItem(QString::fromStdString(ad_list[i].Price)));
 
         auto dt = QDate::fromString(QString::fromStdString(ad_list[i].AvitoTime), "dd.MM.yyyy");
-//        auto dt = QDateTime::fromString(QString::fromStdString(ad_list[i].AvitoTime));
         auto c = new QTableWidgetItem();
         c->setData(Qt::DisplayRole, dt);
         ui->tableWidget->setItem(i, 3, c);
-
 
         ui->tableWidget->setItem(i, 4, new QTableWidgetItem(QString::fromStdString(ad_list[i].Address)));
         ui->tableWidget->setItem(i, 5, new QTableWidgetItem(QString::fromStdString(ad_list[i].OwnerName)));
@@ -133,7 +143,13 @@ void MainWindow::on_treeWidget_itemDoubleClicked(QTreeWidgetItem *item, int colu
     if(item->childCount() == 1)
         return;
 
-    Client c;
+    auto ip = ui->lineEditIp->text();
+
+    if(ip.size() == 0)
+        return;
+
+    Client c{ip.toStdString()};
+
     std::vector<Ad> ad_list;
     c.AdsByTree(ad_list, item->data(0, Qt::UserRole).toInt(), -1);
     UpdateTable(ad_list);
@@ -145,8 +161,19 @@ void MainWindow::on_pushButton_clicked()
     if(query.size() == 0)
         return;
 
-    Client c;
+    auto ip = ui->lineEditIp->text();
+
+    if(ip.size() == 0)
+        return;
+
+    Client c{ip.toStdString()};
+
     std::vector<Ad> ad_list;
     c.AdsByQuery(ad_list, ui->lineEdit->text().toStdString(), -1);
     UpdateTable(ad_list);
+}
+
+void MainWindow::on_pushButtonConnect_clicked()
+{
+    FillTree();
 }
