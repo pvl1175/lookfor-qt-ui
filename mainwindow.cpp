@@ -61,7 +61,7 @@ void MainWindow::FillTree()
 
     Client c{ip.toStdString()};
     std::vector<TreeInfo> ti_list;
-    c.TreeChildren(ti_list, 0);
+    c.TreeChildren(ti_list, -1975);
 
     QList<QTreeWidgetItem*> items;
     std::for_each(ti_list.begin(), ti_list.end(), [&](auto ti)
@@ -92,7 +92,8 @@ void MainWindow::on_treeWidget_itemExpanded(QTreeWidgetItem *item)
     QList<QTreeWidgetItem*> items;
     std::for_each(ti_list.begin(), ti_list.end(), [&](auto ti)
     {
-        QTreeWidgetItem* a = new QTreeWidgetItem((QTreeWidget*)0, QStringList(QString::fromStdString(ti.Name)));
+        QTreeWidgetItem* a = new QTreeWidgetItem((QTreeWidget*)0,
+                                                 QStringList(QString::fromStdString(ti.Name)));
         if(ti.HasChildren)
             a->insertChild(0, new QTreeWidgetItem((QTreeWidget*)0, QStringList(QString::fromStdString("..."))));
         a->setData(0, Qt::UserRole, QVariant(ti.Id));
